@@ -1,0 +1,41 @@
+#! /bin/bash
+
+echo 'hi from the script' &     # & forces script to continue and not wait for echo to finish
+
+echo "argument 0: $0"          	# $0 is the first argument, script name
+echo "1: $1"			# $1, $2... are other arguments passed to the script
+
+list=`ls -la`		 	# stores result of ls into list variable
+
+echo "\$? $?"			# echoes exit value of the latest command
+echo "current directory list"	
+echo "$list"			# $list uses the variable
+
+echo "say hi"
+read input			# reads stdin into input variable
+echo "input: $input"		
+
+for d in `ls -a`; 		# for each line in the list, echoes what the line is
+do echo "_found: $d"
+done
+
+for i in `seq 1 10`;		# seq generates sequence from 1 to 10
+do echo $i
+done
+
+echo "here__"
+
+
+function createFile(){		# defines function, it cannot acces $1 unless we pass $1 to it.
+touch $1
+if [ -f $1 ]
+then
+echo "file $1  created? $?"
+else
+echo "file $1 was not created"
+fi
+}
+
+createFile $1          		# calling function, passing it the value of $1
+
+exit 1;

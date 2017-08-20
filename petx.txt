@@ -1,0 +1,7 @@
+dog
+tile
+cat
+reptile
+dog
+dog
+dog
